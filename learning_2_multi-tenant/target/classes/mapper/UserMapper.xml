@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace= "demo.springboot.mapper.UserMapper" >
+
+    <select id = "queryAllUsers" resultType= "demo.springboot.domain.Book">
+        select
+          tenant_id,
+          name,
+          position,
+          introduction
+        from
+          "alibaba001"."tbl_user_info"
+        union all
+        select
+          tenant_id,
+          name,
+          position,
+          introduction
+        from
+          "tencent002"."tbl_user_info"
+        union all
+        select
+          tenant_id,
+          name,
+          position,
+          introduction
+        from
+          "baidu003"."tbl_user_info"
+
+    </select>
+
+    <insert id="addUser" parameterType="demo.springboot.domain.Book" statementType="PREPARED">
+        insert into
+          ${tenantId}.tbl_user_info("tenant_id","name","position","introduction")
+        values
+          (#{tenantId},#{name},#{position},#{introduction})
+
+    </insert>
+
+    <delete id="deleteUser" parameterType="demo.springboot.domain.Book" statementType="PREPARED">
+        delete
+        from
+          ${tenantId}.tbl_user_info
+        where
+            name = #{name}
+    </delete>
+
+
+
+</mapper>

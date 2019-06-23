@@ -1,0 +1,28 @@
+#服务器
+server:
+  port: 8888
+
+
+spring:
+    #数据源
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:5432/postgres
+    username: postgres
+    password:
+    driver-class-name: org.postgresql.Driver
+
+#    datasource:
+#      url: jdbc:mysql://localhost:3306/springbootdb??useUnicode=true&amp;characterEncoding=UTF-8
+#      username: root
+#      password: 123
+#      driver-class-name: com.mysql.jdbc.Driver
+
+#mybatis配置
+mybatis:
+  typeAliasesPackage: com.example.mybaitsxml.dao.entity
+  mapperLocations: classpath:mapper/*.xml
+  configLocation: classpath:/mybatis-config.xml
+
+#  configuration:
+#    map-underscore-to-camel-case: true
+
